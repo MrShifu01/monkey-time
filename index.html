@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rum+Raisin&display=swap');
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(to top right,#DFBA69, #FFFEDF, #DFBA69);
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-family: "Rum Raisin", sans-serif;
+            text-align: center;
+            color: #DFBA69;
+        }
+
+        h2 {
+            font-family: "Rum Raisin", sans-serif;
+            color: #2A2C31;
+            font-weight: 500;
+        }
+
+        .container {
+            background: linear-gradient(#3E4147, #2A2C31);
+            border: 1px solid;
+            border-radius: 9px;
+            width: 50%;
+            margin: 0 auto;
+            box-shadow: -5px -5px 15px 1px rgba(0, 0, 0, 0.4);
+        }
+
+        .image {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 class="main-heading">...Monkey Time</h2>
+
+    <div class="container">
+        <h1 class="time">20:13:46</h1>
+    </div>
+
+    <img class="image" src="pngwing.com (1).png" alt="three monkeys">
+    
+    <script type="text/javascript">
+        
+        setInterval(() => {
+            let today = new Date();
+            let currentTime = today.toLocaleTimeString();
+            let container = document.querySelector('.container');
+            let time = document.querySelector('.time');
+            let image = document.querySelector('.image');
+            let heading = document.querySelector(".main-heading")
+
+            if (container.style.borderRadius === "9px") {
+                container.style.borderRadius = "10px";
+            } else if (container.style.borderRadius === "10px") {
+                container.style.borderRadius = "9px";
+            } else {
+                container.style.borderRadius = "9px";
+            }
+
+            if (heading.style.fontWeight === "500") {
+                heading.style.fontWeight = "900";
+            } else if (heading.style.fontWeight === "900") {
+                heading.style.fontWeight = "500";
+            } else {
+                heading.style.fontWeight = "500";
+            }
+            
+            time.textContent = currentTime;
+
+            // Position the image randomly within the body
+            let bodyWidth = document.body.clientWidth - image.clientWidth;
+            let bodyHeight = document.body.clientHeight - image.clientHeight;
+            let randomX = Math.floor(Math.random() * bodyWidth);
+            let randomY = Math.floor(Math.random() * bodyHeight);
+
+            image.style.left = `${randomX}px`;
+            image.style.top = `${randomY}px`;
+
+        }, 1000);
+
+
+
+    </script>
+</html>
